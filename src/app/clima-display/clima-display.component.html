@@ -1,0 +1,16 @@
+<input type="text" value="Ingrese su ciudad" [(ngModel)]="ciudadApi" />
+<button type="submit" (click)="fetchDataClima()">Enviar</button>
+
+<h1>
+  {{ ciudad }}
+</h1>
+
+<img src="{{ bandera }}" alt="" />
+
+<p>Temperatura : {{ temperatura }}</p>
+
+<p>Temperatura Máxima : {{ temperaturaMax }}</p>
+
+<p>Temperatura Mínima : {{ temperaturaMin }}</p>
+
+<p>Sensanción termina : {{ sensacion }}</p>
