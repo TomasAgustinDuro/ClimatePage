@@ -14,6 +14,7 @@ export class ClimaDisplayComponent {
   temperatura: number = 0;
   temperaturaMax: number = 0;
   temperaturaMin: number = 0;
+  descripcion: string = '';
   sensacion: number = 0;
   ciudad: string = '';
   ciudadApi: string = '';
@@ -46,6 +47,7 @@ export class ClimaDisplayComponent {
         this.temperaturaMin = data.main['temp_min'];
         this.temperaturaMax = data.main['temp_max'];
         this.sensacion = data.main['feels_like'];
+        this.descripcion = data.weather[0]['description'];
         this.pais = data.sys['country'];
         this.fetchDataBandera();
         console.log(this.pais);
