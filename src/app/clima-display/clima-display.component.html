@@ -1,18 +1,49 @@
-<input type="text" value="Ingrese su ciudad" [(ngModel)]="ciudadApi" />
-<button type="submit" (click)="fetchDataClima()">Enviar</button>
+<div class="container">
+  <div class="row">
+    <form class="form-inline text-center">
+      <div class="form-group mx-sm-3 mb-2">
+        <input
+          id="ciudad"
+          class="form-control form-control-sm"
+          type="text"
+          name="ciudad"
+          placeholder="Ingrese su ciudad"
+          [(ngModel)]="ciudadApi"
+        />
+      </div>
+      <button class="btn btn-primary" type="submit" (click)="fetchDataClima()">
+        Enviar
+      </button>
+    </form>
+  </div>
+</div>
 
-<h1>
-  {{ ciudad }}
-</h1>
+<div class="container">
+  <div class="col">
+    <div class="ciudad">
+      <h1>
+        {{ ciudad }}
+      </h1>
 
-<img src="{{ bandera }}" alt="" />
+      <img src="{{ bandera }}" alt="" />
+    </div>
 
-<p>Temperatura : {{ temperatura }}</p>
+    <div class="informacion">
+      <div class="informacion-grafico">
+        <img [src]="iconoUrl" alt="" class="border border-primary" />
+      </div>
 
-<p>Temperatura Máxima : {{ temperaturaMax }}</p>
+      <div class="informacion-texto">
+        <p>Temperatura : {{ temperatura }}</p>
 
-<p>Temperatura Mínima : {{ temperaturaMin }}</p>
+        <p>Temperatura Máxima : {{ temperaturaMax }}</p>
 
-<p>Sensanción termina : {{ sensacion }}</p>
+        <p>Temperatura Mínima : {{ temperaturaMin }}</p>
 
-<p>{{ descripcion }}</p>
+        <p>Sensación térmica : {{ sensacion }}</p>
+
+        <p>{{ descripcion }}</p>
+      </div>
+    </div>
+  </div>
+</div>

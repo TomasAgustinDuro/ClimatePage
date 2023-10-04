@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-clima-display',
@@ -16,10 +17,11 @@ export class ClimaDisplayComponent {
   temperaturaMin: number = 0;
   descripcion: string = '';
   sensacion: number = 0;
-  ciudad: string = '';
+  ciudad: string = 'Buenos Aires';
   ciudadApi: string = '';
   bandera: string = '';
-  pais: string = '';
+  pais: string = 'ARG';
+  iconoUrl: string = '';
 
   apiUrl = '';
   apiBanderaUrl = '';
@@ -40,15 +42,19 @@ export class ClimaDisplayComponent {
       })
       .then((data) => {
         console.log(data);
-        console.log(data.main);
+        console.log(data.weather[0]['icon']);
 
-        this.ciudad = data.name;
+        // this.ciudad = data.name;
         this.temperatura = data.main['temp'];
         this.temperaturaMin = data.main['temp_min'];
         this.temperaturaMax = data.main['temp_max'];
         this.sensacion = data.main['feels_like'];
         this.descripcion = data.weather[0]['description'];
-        this.pais = data.sys['country'];
+        this.iconoUrl =
+          'https://openweathermap.org/img/wn/' +
+          data.weather[0]['icon'] +
+          '@2x.png';
+        // this.pais = data.sys['country'];
         this.fetchDataBandera();
         console.log(this.pais);
       })

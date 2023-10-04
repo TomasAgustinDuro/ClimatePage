@@ -1,0 +1,26 @@
+form {
+  margin-top: 1em;
+}
+
+.ciudad {
+  display: flex;
+  justify-content: center;
+  margin-top: 1em;
+
+  img {
+    max-width: 3em;
+    max-height: 3em;
+    margin: auto 0.5em;
+  }
+}
+
+.informacion {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border: solid 1px red;
+
+  .informacion-texto {
+    text-align: center;
+    border: solid 1px green;
+  }
+}
