@@ -1,48 +1,48 @@
-<div class="container">
-  <div class="row">
-    <form class="form-inline text-center">
-      <div class="form-group mx-sm-3 mb-2">
-        <input
-          id="ciudad"
-          class="form-control form-control-sm"
-          type="text"
-          name="ciudad"
-          placeholder="Ingrese su ciudad"
-          [(ngModel)]="ciudadApi"
-        />
-      </div>
-      <button class="btn btn-primary" type="submit" (click)="fetchDataClima()">
-        Enviar
-      </button>
-    </form>
-  </div>
-</div>
+<app-buscador></app-buscador>
 
 <div class="container">
   <div class="col">
     <div class="ciudad">
       <h1>
-        {{ ciudad }}
+        {{ climaService.ciudad }}
       </h1>
 
-      <img src="{{ bandera }}" alt="" />
+      <img src="{{ climaService.bandera }}" alt="" />
     </div>
 
-    <div class="informacion">
+    <div *ngIf="climaService.informacionInvisible" class="informacion">
       <div class="informacion-grafico">
-        <img [src]="iconoUrl" alt="" class="border border-primary" />
+        <img
+          [src]="climaService.iconoUrl"
+          alt="imagen del clima"
+          class="imgClima"
+        />
+
+        <div class="pronostico">
+          <h3>Proximos dias</h3>
+          <div class="contenedorPronosticoDias">
+            <div
+              class="pronosticoDias"
+              *ngFor="let dia of climaService.pronostico"
+            >
+              <p>{{ dia.tempMax }} °</p>
+              <p>{{ dia.tempMin }} °</p>
+              <p>{{ dia.fecha }}</p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="informacion-texto">
-        <p>Temperatura : {{ temperatura }}</p>
+        <p>Temperatura : {{ climaService.temperaturaActual }}°</p>
 
-        <p>Temperatura Máxima : {{ temperaturaMax }}</p>
+        <p>Temperatura Máxima : {{ climaService.temperaturaMaxActual }}°</p>
 
-        <p>Temperatura Mínima : {{ temperaturaMin }}</p>
+        <p>Temperatura Mínima : {{ climaService.temperaturaMinActual }}°</p>
 
-        <p>Sensación térmica : {{ sensacion }}</p>
+        <p>Sensación térmica : {{ climaService.sensacionActual }}°</p>
 
-        <p>{{ descripcion }}</p>
+        <p>{{ climaService.descripcionActual }}</p>
       </div>
     </div>
   </div>
