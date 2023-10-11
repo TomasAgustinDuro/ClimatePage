@@ -1,0 +1,40 @@
+form {
+  margin-top: 2em;
+
+  input {
+    display: inline-block;
+    width: 70%;
+    margin-right: 1em;
+    padding: 0.6em;
+  }
+
+  button {
+    padding: 0.4em 1.3em;
+  }
+
+  /* Estilos para la lista de sugerencias */
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: absolute; /* Posición absoluta para superponer sobre el campo de búsqueda */
+    background-color: #fff; /* Color de fondo */
+    border: 1px solid #ccc; /* Borde */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Sombra */
+    max-height: 150px; /* Altura máxima para desplazamiento */
+    overflow-y: auto; /* Habilitar desplazamiento vertical si es necesario */
+    z-index: 100; /* Elevar sobre otros elementos */
+    width: 100%; /* Ancho igual al campo de búsqueda */
+  }
+
+  /* Estilos para cada elemento de sugerencia */
+  li {
+    padding: 8px 16px; /* Espaciado interno */
+    cursor: pointer; /* Cambiar el cursor al pasar por encima */
+    transition: background-color 0.2s; /* Transición de color de fondo al pasar por encima */
+
+    &:hover {
+      background-color: #f0f0f0; /* Color de fondo al pasar por encima */
+    }
+  }
+}

@@ -5,9 +5,10 @@ import { AppRoutingModule } from './app-routing.module'; // Importa tu AppRoutin
 
 import { AppComponent } from './app.component';
 import { ClimaDisplayComponent } from './clima-display/clima-display.component';
+import { BuscadorComponent } from './buscador/buscador.component';
 
 @NgModule({
-  declarations: [AppComponent, ClimaDisplayComponent],
+  declarations: [AppComponent, ClimaDisplayComponent, BuscadorComponent],
   imports: [BrowserModule, FormsModule, AppRoutingModule], // Asegúrate de incluir AppRoutingModule aquí
   providers: [],
   bootstrap: [AppComponent],

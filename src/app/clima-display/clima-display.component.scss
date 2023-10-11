@@ -1,7 +1,3 @@
-form {
-  margin-top: 1em;
-}
-
 .ciudad {
   display: flex;
   justify-content: center;
@@ -15,12 +11,38 @@ form {
 }
 
 .informacion {
+  padding: 1em;
+  margin-top: 1em;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  border: solid 1px red;
+  background-color: rgba($color: #000000, $alpha: 0.2);
+  color: white;
+  border-radius: 2em;
 
   .informacion-texto {
     text-align: center;
-    border: solid 1px green;
+  }
+
+  .informacion-grafico {
+    display: flex;
+
+    .imgClima {
+      margin: auto;
+      width: 30%;
+      height: 60%;
+    }
+
+    .pronostico {
+      margin: auto;
+      text-align: center;
+    }
+
+    .contenedorPronosticoDias {
+      display: flex;
+    }
+    .pronosticoDias {
+      text-align: center;
+      margin-left: 1em;
+    }
   }
 }
