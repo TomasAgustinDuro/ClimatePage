@@ -12,12 +12,12 @@
           [(ngModel)]="terminoBusqueda"
           (input)="buscarSugerencias()"
         />
-        <ul *ngIf="sugerencias.length > 0">
+        <ul *ngIf="terminoBusqueda.trim() !== '' && sugerencias.length > 0">
           <li
             *ngFor="let sugerencia of sugerencias"
-            (click)="autocompletarSugerencia(sugerencia)"
+            (click)="seleccionarSugerencia(sugerencia)"
           >
-            {{ sugerencia }}
+            {{ sugerencia.name }}, {{ sugerencia.country }}
           </li>
         </ul>
         <button class="btn btn-dark" type="submit" (click)="onClickBoton()">

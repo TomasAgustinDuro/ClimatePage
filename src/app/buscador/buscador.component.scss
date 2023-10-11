@@ -12,29 +12,28 @@ form {
     padding: 0.4em 1.3em;
   }
 
-  /* Estilos para la lista de sugerencias */
   ul {
     list-style: none;
-    padding: 0;
-    margin: 0;
-    position: absolute; /* Posición absoluta para superponer sobre el campo de búsqueda */
-    background-color: #fff; /* Color de fondo */
-    border: 1px solid #ccc; /* Borde */
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Sombra */
-    max-height: 150px; /* Altura máxima para desplazamiento */
-    overflow-y: auto; /* Habilitar desplazamiento vertical si es necesario */
-    z-index: 100; /* Elevar sobre otros elementos */
-    width: 100%; /* Ancho igual al campo de búsqueda */
+    width: 56%;
+    margin: 0 6.9em;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 0.4em;
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 100;
   }
 
-  /* Estilos para cada elemento de sugerencia */
   li {
-    padding: 8px 16px; /* Espaciado interno */
-    cursor: pointer; /* Cambiar el cursor al pasar por encima */
-    transition: background-color 0.2s; /* Transición de color de fondo al pasar por encima */
+    text-align: start;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
 
     &:hover {
-      background-color: #f0f0f0; /* Color de fondo al pasar por encima */
+      background-color: #f0f0f0;
     }
   }
 }

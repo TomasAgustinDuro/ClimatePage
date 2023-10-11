@@ -14,10 +14,11 @@ export class BuscadorComponent {
   ) {}
   ciudad: string = '';
   terminoBusqueda: string = '';
-  sugerencias: string[] = [];
+  sugerencias: { name: string; country: string }[] = [];
 
   onClickBoton() {
     this.climaService.ciudadApi = this.ciudad;
+    this.sugerencias = [];
     this.climaService.obtenerClima();
   }
 
@@ -33,9 +34,13 @@ export class BuscadorComponent {
     }
   }
 
+  seleccionarSugerencia(sugerencia: { name: string; country: string }) {
+    this.terminoBusqueda = `${sugerencia.name}, ${sugerencia.country}`;
+    // También puedes ocultar la lista de sugerencias aquí si es necesario.
+  }
+
   autocompletarSugerencia(sugerencia: string) {
     this.terminoBusqueda = sugerencia;
-    this.climaService.obtenerClima();
     this.sugerencias = []; // Limpiar sugerencias después de autocompletar
   }
 }
