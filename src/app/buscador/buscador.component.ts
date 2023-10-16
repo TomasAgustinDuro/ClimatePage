@@ -17,8 +17,11 @@ export class BuscadorComponent {
   sugerencias: { name: string; country: string }[] = [];
 
   onClickBoton() {
-    this.climaService.ciudadApi = this.ciudad;
+    // console.log(this.terminoBusqueda.split(','));
+    this.climaService.ciudadApi = this.terminoBusqueda.split(',')[0];
+    this.climaService.paisApi = this.terminoBusqueda.split(',')[1];
     this.sugerencias = [];
+    console.log(this.climaService.ciudadApi + ',' + this.climaService.paisApi);
     this.climaService.obtenerClima();
   }
 
@@ -41,6 +44,7 @@ export class BuscadorComponent {
 
   autocompletarSugerencia(sugerencia: string) {
     this.terminoBusqueda = sugerencia;
+    // this.ciudad = this.terminoBusqueda;
     this.sugerencias = []; // Limpiar sugerencias después de autocompletar
   }
 }

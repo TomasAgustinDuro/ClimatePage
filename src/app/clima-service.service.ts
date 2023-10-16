@@ -13,6 +13,7 @@ export class ClimaServiceService {
   sensacionActual: number = 0;
   ciudad: string = '';
   ciudadApi: string = '';
+  paisApi: string = '';
   bandera: string = '';
   pais: string = '';
   iconoUrl: string = '';
@@ -44,6 +45,8 @@ export class ClimaServiceService {
       (this.apiUrl =
         'https://api.openweathermap.org/data/2.5/weather?q=' +
         this.ciudadApi +
+        ',' +
+        this.paisApi +
         '&units=metric&appid=6a5db408397d51246d9e900a5735e113')
     )
       .then((response) => {
@@ -104,6 +107,8 @@ export class ClimaServiceService {
       (this.apiUrl =
         'https://api.openweathermap.org/data/2.5/forecast?q=' +
         this.ciudadApi +
+        ',' +
+        this.paisApi +
         '&units=metric&cnt=40&appid=6a5db408397d51246d9e900a5735e113')
     )
       .then((response) => {
