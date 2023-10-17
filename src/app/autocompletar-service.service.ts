@@ -30,7 +30,7 @@ export class AutocompletarServiceService {
           for (let i = 0; i < data.geonames.length; i++) {
             const cityWithCountry = {
               name: data.geonames[i].name,
-              country: data.geonames[i].countryName,
+              country: data.geonames[i].countryCode,
             };
             sugerencias.push(cityWithCountry);
           }
