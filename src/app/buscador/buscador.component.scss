@@ -1,39 +1,28 @@
-form {
-  margin-top: 2em;
+ul {
+  list-style: none;
+  width: 100%; /* Establece el ancho del <ul> al 100% */
+  position: absolute;
+  background-color: #fff;
 
-  input {
-    display: inline-block;
-    width: 70%;
-    margin-right: 1em;
-    padding: 0.6em;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 0.4em;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+li {
+  text-align: start;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: #f0f0f0;
   }
+}
 
-  button {
-    padding: 0.4em 1.3em;
-  }
-
-  ul {
-    list-style: none;
-    width: 56%;
-    margin: 0 6.9em;
-    position: absolute;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-    border-radius: 0.4em;
-    max-height: 150px;
-    overflow-y: auto;
-    z-index: 100;
-  }
-
-  li {
-    text-align: start;
-    padding: 8px 16px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-
-    &:hover {
-      background-color: #f0f0f0;
-    }
-  }
+.form-control,
+button {
+  height: 40px;
+  margin: auto 0.5em; /* Ajusta la altura según tus preferencias */
 }
