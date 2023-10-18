@@ -17,6 +17,7 @@ export class ClimaServiceService {
   bandera: string = '';
   pais: string = '';
   iconoUrl: string = '';
+  icono: string = '';
   pronostico: {
     fecha: string;
     tempMax: number;
