@@ -16,26 +16,36 @@
   background-color: rgba(0, 0, 0, 0.2);
   color: white;
   border-radius: 2em;
-}
 
-.pronostico {
-  text-align: center;
-  height: 100%;
+  .informacion-texto {
+    text-align: center;
 
-  .contenedorPronosticoDias {
-    display: flex;
-    align-items: center;
-    gap: 1.5em;
+    #descripcion {
+      font-family: "Roboto thin", sans-serif;
+      font-size: 2em;
+    }
+  }
+
+  .pronostico {
+    text-align: center;
     height: 100%;
-  }
 
-  .pronosticoDias {
-    display: flex;
-    flex-direction: column;
-    margin: auto;
-  }
-}
+    .contenedorPronosticoDias {
+      display: flex;
+      align-items: center;
+      gap: 0 1.5em;
+      height: 100%;
+      flex-flow: wrap;
+    }
 
-.informacion-texto {
-  text-align: center;
+    .pronosticoDias {
+      display: flex;
+      flex-direction: column;
+      margin: auto;
+
+      .iconoDiasPronostico {
+        max-width: 3.5em;
+      }
+    }
+  }
 }
