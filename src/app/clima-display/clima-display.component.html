@@ -1,52 +1,52 @@
 <app-buscador></app-buscador>
 
 <div class="container">
-  <div class="col">
-    <div class="ciudad">
-      <h1>
-        {{ climaService.ciudad }}
-      </h1>
+  <div class="row">
+    <div class="ciudad d-flex">
+      <h1>{{ climaService.ciudad }}</h1>
+      <img class="rounded-circle" [src]="climaService.bandera" alt="" />
+    </div>
+  </div>
 
-      <img class="rounded-circle" src="{{ climaService.bandera }}" alt="" />
+  <div
+    *ngIf="climaService.informacionInvisible"
+    class="informacion mx-auto row"
+  >
+    <div class="informacion-texto col-md-5 mx-auto">
+      <img
+        [src]="climaService.iconoUrl"
+        alt="imagen del clima"
+        class="imgClima"
+      />
+      <p>Temperatura: {{ climaService.temperaturaActual }}°</p>
+      <p>Temperatura Máxima: {{ climaService.temperaturaMaxActual }}°</p>
+      <p>Temperatura Mínima: {{ climaService.temperaturaMinActual }}°</p>
+      <p>Sensación térmica: {{ climaService.sensacionActual }}°</p>
+      <p id="descripcion">{{ climaService.descripcionActual }}</p>
     </div>
 
-    <div *ngIf="climaService.informacionInvisible" class="informacion">
-      <div class="informacion-grafico">
-        <img
-          [src]="climaService.iconoUrl"
-          alt="imagen del clima"
-          class="imgClima"
-        />
-
-        <div>
-          <canvas id="icon-canvas" width="128" height="128"></canvas>
-        </div>
-
-        <div class="pronostico">
-          <h3>Proximos dias</h3>
-          <div class="contenedorPronosticoDias">
-            <div
-              class="pronosticoDias"
-              *ngFor="let dia of climaService.pronostico"
-            >
-              <p>{{ dia.tempMax }} °</p>
-              <p>{{ dia.tempMin }} °</p>
-              <p>{{ dia.fecha }}</p>
-            </div>
+    <div class="col-md-6 mx-auto">
+      <div class="pronostico">
+        <h3>Próximos días</h3>
+        <div class="contenedorPronosticoDias">
+          <div
+            class="pronosticoDias"
+            *ngFor="let dia of climaService.pronostico"
+          >
+            <img
+              class="iconoDiasPronostico"
+              [src]="
+                'https://openweathermap.org/img/wn/' +
+                dia.iconoPronostico +
+                '@2x.png'
+              "
+              alt=""
+            />
+            <p>{{ dia.fecha }}</p>
+            <p>{{ dia.tempMax }}°</p>
+            <p>{{ dia.tempMin }}°</p>
           </div>
         </div>
-      </div>
-
-      <div class="informacion-texto">
-        <p>Temperatura : {{ climaService.temperaturaActual }}°</p>
-
-        <p>Temperatura Máxima : {{ climaService.temperaturaMaxActual }}°</p>
-
-        <p>Temperatura Mínima : {{ climaService.temperaturaMinActual }}°</p>
-
-        <p>Sensación térmica : {{ climaService.sensacionActual }}°</p>
-
-        <p>{{ climaService.descripcionActual }}</p>
       </div>
     </div>
   </div>

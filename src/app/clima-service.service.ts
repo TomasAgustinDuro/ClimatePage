@@ -19,6 +19,7 @@ export class ClimaServiceService {
   iconoUrl: string = '';
   icono: string = '';
   pronostico: {
+    iconoPronostico: string;
     fecha: string;
     tempMax: number;
     tempMin: number;
@@ -48,7 +49,7 @@ export class ClimaServiceService {
         this.ciudadApi +
         ',' +
         this.paisApi +
-        '&units=metric&appid=6a5db408397d51246d9e900a5735e113')
+        '&units=metric&lang=es&appid=6a5db408397d51246d9e900a5735e113')
     )
       .then((response) => {
         if (!response.ok) {
@@ -62,11 +63,12 @@ export class ClimaServiceService {
         // console.log(data.weather[0]['icon']);
 
         this.ciudad = data.name;
-        this.temperaturaActual = data.main['temp'];
-        this.temperaturaMinActual = data.main['temp_min'];
-        this.temperaturaMaxActual = data.main['temp_max'];
-        this.sensacionActual = data.main['feels_like'];
+        this.temperaturaActual = data.main['temp'].toFixed(1);
+        this.temperaturaMinActual = data.main['temp_min'].toFixed(1);
+        this.temperaturaMaxActual = data.main['temp_max'].toFixed(1);
+        this.sensacionActual = data.main['feels_like'].toFixed(1);
         this.descripcionActual = data.weather[0]['description'];
+
         this.iconoUrl =
           'https://openweathermap.org/img/wn/' +
           data.weather[0]['icon'] +
@@ -137,9 +139,10 @@ export class ClimaServiceService {
             ];
 
             const nuevoPronostico = {
+              iconoPronostico: dato.weather[0].icon,
               fecha: nombresDias[diaSemana],
-              tempMax: dato.main.temp_max,
-              tempMin: dato.main.temp_min,
+              tempMax: dato.main.temp_max.toFixed(1),
+              tempMin: dato.main.temp_min.toFixed(1),
             };
             this.pronostico.push(nuevoPronostico);
           }
