@@ -1,9 +1,15 @@
-import { Injectable } from '@angular/core';
+import { ElementRef, Injectable, ViewChild } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ClimaServiceService {
+  iconoWeatherIcons: any;
+  iconClass: any;
+  iconClassPronostico: any;
+  iconNamePronostico: any;
+  horaPedido: any;
+
   constructor() {}
 
   temperaturaActual: number = 0;
@@ -24,6 +30,30 @@ export class ClimaServiceService {
     tempMax: number;
     tempMin: number;
   }[] = [];
+  @ViewChild('imgClima', { static: false }) imgClima: ElementRef | undefined;
+  iconName = '';
+
+  iconMapping: { [key: string]: string } = {
+    '01d': 'wi-day-sunny', // Clear sky (day)
+    '01n': 'wi-night-clear', // Clear sky (night)
+    '02d': 'wi-day-cloudy', // Few clouds (day)
+    '02n': 'wi-night-alt-cloudy', // Few clouds (night)
+    '03d': 'wi-cloud', // Scattered clouds (day)
+    '03n': 'wi-night-alt-cloudy', // Scattered clouds (night)
+    '04d': 'wi-cloudy', // Broken clouds (day)
+    '04n': 'wi-night-alt-cloudy', // Broken clouds (night)
+    '09d': 'wi-showers', // Showers (day)
+    '09n': 'wi-night-alt-showers', // Showers (night)
+    '10d': 'wi-rain', // Rain (day)
+    '10n': 'wi-night-alt-rain', // Rain (night)
+    '11d': 'wi-thunderstorm', // Thunderstorm (day)
+    '11n': 'wi-night-alt-thunderstorm', // Thunderstorm (night)
+    '13d': 'wi-snow', // Snow (day)
+    '13n': 'wi-night-alt-snow', // Snow (night)
+    '50d': 'wi-fog', // Mist (day)
+    '50n': 'wi-fog', // Mist (night)
+    // Agrega más asignaciones según los nombres de iconos de la API
+  };
 
   apiUrl = '';
   apiBanderaUrl = '';
@@ -32,12 +62,12 @@ export class ClimaServiceService {
   informacionInvisible: boolean = false;
 
   cambiarFondoClima() {
-    if (this.temperaturaActual >= 25) {
-      document.body.style.backgroundColor = '#FF4500';
-    } else if (this.temperaturaActual >= 15 || this.temperaturaActual <= 24) {
+    if (this.horaPedido >= 6 && this.horaPedido <= 18) {
       document.body.style.backgroundColor = '#87CEEB';
-    } else if (this.temperaturaActual >= 5 || this.temperaturaActual <= 14) {
-      document.body.style.backgroundColor = '#32CD32';
+      document.body.style.backgroundImage = 'url(../assets/nube2.png)';
+    } else {
+      document.body.style.backgroundColor = '#4169E1';
+      document.body.style.backgroundImage = 'url(../assets/nubes-noche.png)';
     }
   }
 
@@ -59,9 +89,7 @@ export class ClimaServiceService {
         return response.json();
       })
       .then((data) => {
-        // console.log(data);
-        // console.log(data.weather[0]['icon']);
-
+        console.log(data);
         this.ciudad = data.name;
         this.temperaturaActual = data.main['temp'].toFixed(1);
         this.temperaturaMinActual = data.main['temp_min'].toFixed(1);
@@ -69,16 +97,16 @@ export class ClimaServiceService {
         this.sensacionActual = data.main['feels_like'].toFixed(1);
         this.descripcionActual = data.weather[0]['description'];
 
-        this.iconoUrl =
-          'https://openweathermap.org/img/wn/' +
-          data.weather[0]['icon'] +
-          '@2x.png';
+        this.iconName = data.weather[0]['icon'];
+        this.iconoWeatherIcons = this.iconMapping[this.iconName];
+        if (this.iconoWeatherIcons) {
+          this.iconClass = this.iconoWeatherIcons;
+        }
         this.pais = data.sys['country'];
         this.obtenerBanderaPais();
         this.cambiarFondoClima();
         this.obtenerDataPronostico();
         this.informacionInvisible = true;
-        // console.log(this.pais);
       })
       .catch((error) => {
         console.error('Error: ', error);
@@ -137,9 +165,13 @@ export class ClimaServiceService {
               'Viernes',
               'Sábado',
             ];
-
+            this.iconNamePronostico = dato.weather[0]['icon'];
+            this.iconoWeatherIcons = this.iconMapping[this.iconNamePronostico];
+            if (this.iconoWeatherIcons) {
+              this.iconClassPronostico = this.iconoWeatherIcons;
+            }
             const nuevoPronostico = {
-              iconoPronostico: dato.weather[0].icon,
+              iconoPronostico: this.iconClassPronostico,
               fecha: nombresDias[diaSemana],
               tempMax: dato.main.temp_max.toFixed(1),
               tempMin: dato.main.temp_min.toFixed(1),

@@ -17,6 +17,10 @@
   color: white;
   border-radius: 2em;
 
+  #imgClima {
+    font-size: 5em;
+  }
+
   .informacion-texto {
     text-align: center;
 
@@ -43,8 +47,8 @@
       flex-direction: column;
       margin: auto;
 
-      .iconoDiasPronostico {
-        max-width: 3.5em;
+      #imgClimaPronostico {
+        font-size: 2em;
       }
     }
   }
