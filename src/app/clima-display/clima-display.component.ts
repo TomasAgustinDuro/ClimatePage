@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ClimaServiceService } from '../clima-service.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-clima-display',
