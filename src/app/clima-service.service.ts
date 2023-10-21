@@ -58,16 +58,31 @@ export class ClimaServiceService {
   apiUrl = '';
   apiBanderaUrl = '';
   apiPronosticoUrl = '';
+  llueve: boolean = false;
 
   informacionInvisible: boolean = false;
 
   cambiarFondoClima() {
     if (this.horaPedido >= 6 && this.horaPedido <= 18) {
-      document.body.style.backgroundColor = '#87CEEB';
-      document.body.style.backgroundImage = 'url(../assets/nube2.png)';
+      if (this.llueve) {
+        document.body.style.color = 'white';
+        document.body.style.backgroundColor = '#6E7B8B';
+        document.body.style.backgroundImage = 'url(../assets/nube2.png)';
+      } else {
+        document.body.style.color = 'white';
+        document.body.style.backgroundColor = '#87CEEB';
+        document.body.style.backgroundImage = 'url(../assets/nube2.png)';
+      }
     } else {
-      document.body.style.backgroundColor = '#4169E1';
-      document.body.style.backgroundImage = 'url(../assets/nubes-noche.png)';
+      if (this.llueve) {
+        document.body.style.color = 'white';
+        document.body.style.backgroundColor = '#6E7B8B'; // Reemplaza 'color-fondo-noche-lluvia' con el color de fondo deseado
+        document.body.style.backgroundImage = 'url(../assets/nubes-noche.png)';
+      } else {
+        document.body.style.color = 'white';
+        document.body.style.backgroundColor = '#4169E1';
+        document.body.style.backgroundImage = 'url(../assets/nubes-noche.png)';
+      }
     }
   }
 
@@ -96,6 +111,10 @@ export class ClimaServiceService {
         this.temperaturaMaxActual = data.main['temp_max'].toFixed(1);
         this.sensacionActual = data.main['feels_like'].toFixed(1);
         this.descripcionActual = data.weather[0]['description'];
+
+        if (data.weather[0]['main'] == 'Rain') {
+          this.llueve = true;
+        }
 
         this.iconName = data.weather[0]['icon'];
         this.iconoWeatherIcons = this.iconMapping[this.iconName];
