@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 export class AutocompletarServiceService {
   constructor() {}
 
-  sugerenciasUrl = 'http://api.geonames.org/searchJSON?';
+  sugerenciasUrl = 'https://nominatim.openstreetmap.org/search?format=json&';
 
   obtenerSugerencias(
     termino: string
@@ -18,22 +18,25 @@ export class AutocompletarServiceService {
       (async () => {
         try {
           const response = await fetch(
-            `${this.sugerenciasUrl}name_startsWith=${termino}&maxRows=50&username=tomasduro`
+            `${this.sugerenciasUrl}q=${termino}&limit=50`
           );
 
           if (!response.ok) {
-            throw new Error('Error en la solicitud a Geonames');
+            throw new Error('Error en la solicitud a Nominatim');
           }
 
           const data = await response.json();
 
-          for (let i = 0; i < data.geonames.length; i++) {
-            const cityWithCountry = {
-              name: data.geonames[i].name,
-              country: data.geonames[i].countryCode,
+
+          for (let i = 0; i < data.length; i++) {
+            const country = data[i].address ? data[i].address.country_code : '';
+            const placeWithCountry = {
+              name: data[i].display_name,
+              country: country || ''
             };
-            sugerencias.push(cityWithCountry);
+            sugerencias.push(placeWithCountry);
           }
+
 
           const sugerenciasFiltradas = sugerencias.filter((s) =>
             s.name.toLowerCase().includes(termino.toLowerCase())
@@ -42,7 +45,7 @@ export class AutocompletarServiceService {
           observer.next(sugerenciasFiltradas);
           observer.complete();
         } catch (error) {
-          console.error('Error en la solicitud a Geonames:', error);
+          console.error('Error en la solicitud a Nominatim:', error);
           observer.error(error);
         }
       })();
