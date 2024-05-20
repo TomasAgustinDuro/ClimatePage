@@ -1,27 +1,38 @@
-# ClimatePage
+# Climate Page
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.6.
+Climate Page is a web application that provides detailed weather information and forecasts for different locations worldwide. It utilizes data from reliable sources to offer users an informative and useful weather experience.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- Display of current temperature and forecast for the upcoming days.
+- Search for locations by name to obtain specific weather information.
+- Intuitive charts showing historical temperature trends.
+- Customization of temperature and wind speed units.
 
-## Code scaffolding
+## Installation
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. Clone this repository to your local machine using `git clone`.
+2. Navigate to the project directory with `cd ClimatePage`.
+3. Install dependencies with `npm install`.
 
-## Build
+## Usage
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. Run `ng serve` to start the development server.
+2. Open your web browser and go to `http://localhost:4200/` to view the application.
+3. Use the search bar to find weather information for a specific location.
+4. Explore different features of the application, such as historical charts and unit customization.
 
-## Running unit tests
+## Technologies Used
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- Angular: Frontend web development framework.
+- TypeScript: Programming language for web applications.
+- HTML/CSS: Markup and styling languages for the user interface.
+- Nominatim API: Real-time weather data source.
 
-## Running end-to-end tests
+## Contribution
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Contributions are welcome! If you have ideas for new features, improvements, or bug fixes, please create a pull request or open an issue to discuss it.
 
-## Further help
+## License
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+This project is licensed under the [MIT License](LICENSE).
