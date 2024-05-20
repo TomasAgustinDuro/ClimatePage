@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 export class AutocompletarServiceService {
   constructor() {}
 
-  sugerenciasUrl = 'http://api.geonames.org/searchJSON?';
+  sugerenciasUrl = 'http://secure.geonames.org/searchJSON?';
 
   obtenerSugerencias(
     termino: string

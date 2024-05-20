@@ -104,7 +104,6 @@ export class ClimaServiceService {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
         this.ciudad = data.name;
         this.temperaturaActual = data.main['temp'].toFixed(1);
         this.temperaturaMinActual = data.main['temp_min'].toFixed(1);
@@ -198,8 +197,6 @@ export class ClimaServiceService {
             this.pronostico.push(nuevoPronostico);
           }
         });
-
-        console.log(this.pronostico);
       })
       .catch((error) => {
         console.error('Error4: ', error);
